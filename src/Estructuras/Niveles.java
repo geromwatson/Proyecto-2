@@ -9,7 +9,7 @@ public class Niveles  {
     int min;
     int max;
     
-    Linked_List listadragones = new Linked_List();
+    public Linked_List listadragones = new Linked_List();
     
     //*Crea un numero aleatoria que va de 1 a 100
     private int getNumeroRandom(){
@@ -19,12 +19,16 @@ public class Niveles  {
     }
     
 
+    public static void main(String args[]){
+    	Niveles nv1=new Niveles();
+    	nv1.Nivel1();
+    }
     
     //*Crea el nivel 1 donde hay 15 dragones
     public Linked_List Nivel1(){
         
         
-        getNumeroRandom();
+        //getNumeroRandom();
     
         
         Position posdragon1 = new Position(100,100);
@@ -86,9 +90,11 @@ public class Niveles  {
         Position posdragon15 = new Position(getNumeroRandom(),getNumeroRandom());
         Dragon dragon15 = new Dragon("Quetza", 3,502,1,1,"Wawel",posdragon15);
         listadragones.append(dragon15);
-        //listadragones.printList();
+        listadragones.printList();
+        System.out.println("se deberian de estar printendo los dragones");
+        listadragones.switchDragon(listadragones, 1, 2);
         //listadragones.SelectionSortporEdadmM(listadragones);
-        //listadragones.printList();
+        listadragones.printList();
 
         
         return listadragones;

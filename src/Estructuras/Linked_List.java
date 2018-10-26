@@ -239,6 +239,35 @@ public class Linked_List{
             
         
     }
+    public Linked_List switchDragon(Linked_List lista,int a,int b) {
+    	
+    	
+    	lista.getNodeinIndex(a-1).setNext(lista.getNodeinIndex(b));
+    	lista.getNodeinIndex(b).setNext(lista.getNodeinIndex(a+1));
+    	lista.getNodeinIndex(b-1).setNext(lista.getNodeinIndex(a));
+    	lista.getNodeinIndex(a).setNext(lista.getNodeinIndex(b+1));
+
+    	
+    	
+    	
+    	
+    	
+
+
+    	
+    	if (lista.getNodeinIndex(a-1)==null) {
+    		
+    	}
+    	
+    	
+
+
+
+    	return lista;
+
+    	
+    	
+    }
 
         
 }
