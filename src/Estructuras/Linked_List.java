@@ -240,18 +240,29 @@ public class Linked_List{
         
     }
     public Linked_List switchDragon(Linked_List lista,int a,int b) {
-    	
-    	
-    	lista.getNodeinIndex(a-1).setNext(lista.getNodeinIndex(b));
-    	lista.getNodeinIndex(b).setNext(lista.getNodeinIndex(a+1));
-    	lista.getNodeinIndex(b-1).setNext(lista.getNodeinIndex(a));
-    	lista.getNodeinIndex(a).setNext(lista.getNodeinIndex(b+1));
+    	Dragon tempor =lista.getNodeinIndex(a+1);
+    	Dragon tempor2 =lista.getNodeinIndex(b+1);
 
     	
+
+    	lista.getNodeinIndex(a-1).setNext(lista.getNodeinIndex(b));
     	
+    	lista.getNodeinIndex(b-1).setNext(lista.getNodeinIndex(a));
     	
+    	lista.getNodeinIndex(b).setNext(tempor);
+    	lista.getNodeinIndex(a).setNext(tempor2);
+
     	
+
+
     	
+    	System.out.println("lool"+lista.getNodeinIndex(a).getNombre());
+
+
+    	
+
+    	
+
 
 
     	

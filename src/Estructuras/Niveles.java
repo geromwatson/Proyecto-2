@@ -9,7 +9,7 @@ public class Niveles  {
     int min;
     int max;
     
-    public Linked_List listadragones = new Linked_List();
+    public Linked_List listadragones = new Linked_List(); 
     
     //*Crea un numero aleatoria que va de 1 a 100
     private int getNumeroRandom(){
@@ -19,10 +19,7 @@ public class Niveles  {
     }
     
 
-    public static void main(String args[]){
-    	Niveles nv1=new Niveles();
-    	nv1.Nivel1();
-    }
+
     
     //*Crea el nivel 1 donde hay 15 dragones
     public Linked_List Nivel1(){
