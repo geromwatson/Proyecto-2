@@ -1,4 +1,3 @@
-
 package Estructuras;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -32,6 +31,12 @@ public class Dragon {
     int numMat;
     Dragon izqda, drcha;
 
+    public int posx2,posy2;
+   
+    
+    
+    
+
     /**Constructor clase Dragon donde inicializa los atributos de Dr
      * @param nombre
      * @param velocidad
@@ -48,6 +53,8 @@ public class Dragon {
         this.clase = clase;
         this.padre = padre;
         this.pos = pos;
+        this.posx2=pos.getX()+97;
+        this.posy2=pos.getY()+78;
         
     }
     /**Getters y Setter
@@ -55,6 +62,21 @@ public class Dragon {
     public Dragon getNext() {
         return next;
     }
+    public int getPosx2() {
+		return posx2;
+	}
+
+	public void setPosx2(int posx2) {
+		this.posx2 = posx2;
+	}
+
+	public int getPosy2() {
+		return posy2;
+	}
+
+	public void setPosy2(int posy2) {
+		this.posy2 = posy2;
+	}
     public void setNext(Dragon next) {
         this.next = next;
     }
@@ -113,4 +135,3 @@ public class Dragon {
 
     
 }
-
