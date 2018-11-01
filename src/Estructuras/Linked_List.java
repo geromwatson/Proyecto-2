@@ -160,6 +160,37 @@ public class Linked_List{
             return lista;
         }
         
+        public void switchDragon1(Linked_List lista,int a,int b) {
+            
+            Dragon Dragon1 = lista.getNodeinIndex(a);
+            Dragon Dragon2 = lista.getNodeinIndex(b);
+            Dragon temp;
+            temp = new Dragon(Dragon1.getNombre(),Dragon1.getVelocidadRecarga(),Dragon1.getEdad(),
+                    Dragon1.getResistencia(),Dragon1.getClase(),Dragon1.getPadre(),Dragon1.getPos());
+            
+            lista.append(temp);
+                                 
+            Dragon1.setNombre(Dragon2.getNombre());
+            Dragon1.setVelocidadRecarga(Dragon2.getVelocidadRecarga());
+            Dragon1.setEdad(Dragon2.getEdad());
+            Dragon1.setResistencia(Dragon2.getResistencia());
+            Dragon1.setClase(Dragon2.getClase());
+            Dragon1.setPadre(Dragon2.getPadre());
+            Dragon1.setPos(Dragon2.getPos());
+            
+            Dragon2.setNombre(temp.getNombre());
+            Dragon2.setVelocidadRecarga(temp.getVelocidadRecarga());
+            Dragon2.setEdad(temp.getEdad());
+            Dragon2.setResistencia(temp.getResistencia());
+            Dragon2.setClase(temp.getClase());
+            Dragon2.setPadre(temp.getPadre());
+            Dragon2.setPos(temp.getPos());
+            
+            lista.deleteNodeinIndex(lista.lenght-1);
+
+        }
+
+        
         public Linked_List moverDragon(Linked_List lista, int a, int b){
             
             Dragon Dragon1 = lista.getNodeinIndex(a);
@@ -354,19 +385,20 @@ public class Linked_List{
         /** Metodo que elimina de la lista de dragones el dragon que murio y llama a la funcion que ordena los dragones cada vez que muere un dragon
         * @param listadragones
         * @param dragon*/
-        public void dragondisparado(Linked_List listadragones, Dragon dragon){
-            int ord = 1;
-            dragon.setResistencia(dragon.getResistencia()-1);     
-                if (dragon.getResistencia()== 0){
-                    listadragones.delete(dragon, listadragones);
-                    ord++;
-                    if (ord > 8){
-                        ord = 1;
-                    }
+public void dragondisparado(Linked_List listadragones, Dragon dragon,int indic){
+        int ord = 1;
+        dragon.setResistencia(dragon.getResistencia()-1);
+            if (dragon.getResistencia()== 0){
+                listadragones.deleteNodeinIndex(indic);
+                ord++;
+                if (ord > 8){
+                    ord = 1;
                 }
-                //listadragones.nextSort(listadragones, ord);
-                
-        }
+            }
+            listadragones.nextSort(listadragones, ord);
+           
+    }
+
         //Variables min y max para definir el parametro para generar numeros aleatorios
         int min;
         int max;
@@ -423,6 +455,95 @@ public class Linked_List{
                 }
                // return result;
             }
+    
+    
+    /* This function takes last element as pivot, 
+       places the pivot element at its correct 
+       position in sorted array, and places all 
+       smaller (smaller than pivot) to left of 
+       pivot and all greater elements to right 
+       of pivot */
+    int partition(Linked_List arr, int low, int high) 
+    { 
+        int pivot = arr.getNodeinIndex(high).getEdad();  
+        int i = (low-1); // index of smaller element 
+        for (int j=low; j<high; j++) 
+        { 
+            // If current element is smaller than or 
+            // equal to pivot 
+            if (arr.getNodeinIndex(j).getEdad() <= pivot) 
+            { 
+                i++; 
+  
+                // swap arr[i] and arr[j] 
+                switchDragon(arr, i, j);
+            } 
+        } 
+  
+        // swap arr[i+1] and arr[high] (or pivot) 
+        switchDragon(arr, i+1, high);
+        
+  
+        return i+1; 
+    } 
+  
+  
+    /* The main function that implements QuickSort() 
+      arr[] --> Array to be sorted, 
+      low  --> Starting index, 
+      high  --> Ending index */
+    void quicksort(Linked_List arr, int low, int high) 
+    { 
+        if (low < high) 
+        { 
+            /* pi is partitioning index, arr[pi] is  
+              now at right place */
+            int pi = partition(arr, low, high); 
+  
+            // Recursively sort elements before 
+            // partition and after partition 
+            quicksort(arr, low, pi-1); 
+            quicksort(arr, pi+1, high); 
+        } 
+    } 
+  
+    /* A utility function to print array of size n */
+    void printArrayq(Linked_List arr) 
+    { 
+        int n = arr.getLenght(); 
+        for (int i=0; i<n; ++i) 
+            System.out.print(arr.getNodeinIndex(i).getEdad()+arr.getNodeinIndex(i).getNombre()+" "); 
+        System.out.println(); 
     }
+     void insertionsort(Linked_List arr) 
+    { 
+        int n = arr.getLenght(); 
+        for (int i=1; i<n; ++i) 
+        { 
+            int j = i-1; 
+  
+            /* Move elements of arr[0..i-1], thatg are 
+               greater than key, to one position ahead 
+               of their current position */
+            while (j>=0 && arr.getNodeinIndex(j).getEdad() > arr.getNodeinIndex(i).getEdad()) 
+            { 
+                switchDragon(arr, j+1, j);
+               
+                j = j-1; 
+            } 
+            switchDragon1(arr, i, j+1);
+            //switchDragon(arr, j+1, i);
+        } 
+    } 
+  
+    /* A utility function to print array of size n*/
+    static void printArrayi(Linked_List arr) 
+    { 
+        int n = arr.getLenght(); 
+        for (int i=0; i<n; ++i) 
+            System.out.print(arr.getNodeinIndex(i).getEdad()+arr.getNodeinIndex(i).getNombre()+" "); 
+        System.out.println(); 
+    } 
+        }
     
 
