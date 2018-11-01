@@ -48,7 +48,7 @@ public class Linked_List{
 	public void printList() {
 		Dragon n = root;
 		for(int i = 0 ; i<this.lenght;i++) {    //Recorre la lista y va imprimiendo los nombres de los dragones en consola
-			System.out.println(n.getNombre());
+			System.out.println(n.getNombre()+" Edad "+n.getEdad()+" Resistencia "+n.getResistencia()+" velocidad Recarga "+n.getVelocidadRecarga()+" Padre "+n.getPadre());
 			n = n.getNext();
 		}
 	}
@@ -322,60 +322,66 @@ public class Linked_List{
         /**Metodo que da la posicion a cada Dragon para que al graficarlos en la interfaz, simule un arbol binario por familia
         * @param listadragones*/
         //Aun no funciona*
-        public void arbolFamilia(Linked_List listadragones){
-            int x = 25;
-            int y = 200;
-            int n;
-            int e = 0;
-            Dragon temp;
-            temp = listadragones.root;
-            while (temp.getNext()!= null){
-                n = (int) pow(2,e);
-                temp.setPos(x, y);
-                while (n > 0){
-                    temp.setPos(x, y);
-                    n = n-1;
-                    temp = temp.getNext();
-                    temp.setPos(x, y);
-                }
-                x = x + 25;
-                e++;           
-            }
+        public void arbolFamilia(Linked_List listadragones,int X){
+    		int cont=0;
+    		while (cont!=listadragones.getLenght()) {
+        	for (int i=0;i<=listadragones.getLenght()-1;i++) {
+        		X=X+25;
+        		int dist=(int) (708/(pow(2,i)+1));
+        		int ref=0;
+        		while(ref<700) {
+        			ref=ref+dist;
+        			listadragones.getNodeinIndex(cont).setPos(X,ref);
+        			cont++;
+
+        		}
+        	}
+    		}
+            
         }
         /**Metodo que asigna que tipo de ordenamiento sigue despues de que maten a cada Drago
         * @param listadragones
         * @param ord*/
         public void nextSort(Linked_List listadragones, int ord){
+        	String sort = null;
             switch (ord) {
                 case 1:
-                    listadragones.SelectionSortporEdadMm(listadragones);
-                    listadragones.graficoSort(listadragones);
+                    listadragones.SSmM(listadragones);
+                    listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
                     break;
                 case 2:
-                    listadragones.arbolFamilia(listadragones);
+                    listadragones.arbolFamilia(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="arbol Familia";
                     break;
                 case 3:
                     listadragones.InsertionSortporVelocidadRecargaMm(listadragones);
-                    listadragones.graficoSort(listadragones);
+                    listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="Insertion Sort";
                     break;
                 case 4:
                     listadragones.QuickSortporEdadMm(listadragones);
-                    listadragones.graficoSort(listadragones);
+                    listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="Quick Sort";
                     break;
                 case 5:
                     listadragones.InsertionSortporVelocidadRecargamM(listadragones);
-                    listadragones.graficoSort(listadragones);
+                    listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="Insertion Sort Velocidad de Recarga";
                     break;
                 case 6:     
                     listadragones.SelectionSortporEdadmM(listadragones);
-                    listadragones.graficoSort(listadragones);
+                    listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="Selection Sort";
                     break;
                 case 7:
                     listadragones.QuickSortporEdadmM(listadragones);
-                    listadragones.graficoSort(listadragones);
+                    listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="Quick Sort";
                     break;
                 case 8:
-                    listadragones.arbolFamilia(listadragones);
+                	listadragones.QuickSortporEdadMm(listadragones);
+                    listadragones.arbolFamilia(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    sort="Quick Sort";
                     break;
                 default:
                     break;
@@ -385,17 +391,18 @@ public class Linked_List{
         /** Metodo que elimina de la lista de dragones el dragon que murio y llama a la funcion que ordena los dragones cada vez que muere un dragon
         * @param listadragones
         * @param dragon*/
-public void dragondisparado(Linked_List listadragones, Dragon dragon,int indic){
-        int ord = 1;
+public Linked_List dragondisparado(Linked_List listadragones, Dragon dragon,int indic){
+        int ord = 0;
         dragon.setResistencia(dragon.getResistencia()-1);
             if (dragon.getResistencia()== 0){
                 listadragones.deleteNodeinIndex(indic);
                 ord++;
+                listadragones.nextSort(listadragones, ord);
                 if (ord > 8){
                     ord = 1;
                 }
             }
-            listadragones.nextSort(listadragones, ord);
+			return listadragones;
            
     }
 
@@ -404,20 +411,19 @@ public void dragondisparado(Linked_List listadragones, Dragon dragon,int indic){
         int max;
         /**Metodo que genera dos numeros aleatorios dentro de un parametro especifico*/
         private int getNumeroRandom(){
-            this.min = 0;
-            this.max = 100;
+            this.min = 05;
+            this.max = 670;
             return ThreadLocalRandom.current().nextInt(min, max);
         }
         /**Metodo que asigna la posicion de los dragones para graficarlos en pantall
         *@param listadragones*/
-        public void graficoSort(Linked_List listadragones){
-            int x = 100;
+        public void graficoSort(Linked_List listadragones,int x){
             Dragon current;
             current = listadragones.root;
             while(current.getNext()!= null){
                 current.setPos(x,getNumeroRandom());
                 current  = current.getNext();
-                x = x + 25;     
+                x = x + 97;     
             }       
         }
     

@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
-public class hipogrifo extends JPanel implements Runnable,KeyListener{
+public class hipogrifo extends JPanel implements Runnable{
 	private Image imghipogrifo =new ImageIcon("C:\\Users\\Aaron\\eclipse-workspace\\Proyecto2\\src\\img\\hipogrifo.gif").getImage();
     private Thread hilo;
     int x=200;
@@ -32,24 +32,7 @@ public class hipogrifo extends JPanel implements Runnable,KeyListener{
 	public void setY(int y) {
 		this.y = y;
 	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode()==65) {
-			x=x+3;
-		}
-			
-		}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 		
 	

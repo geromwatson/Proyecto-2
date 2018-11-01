@@ -53,8 +53,8 @@ public class Dragon {
         this.clase = clase;
         this.padre = padre;
         this.pos = pos;
-        this.posx2=pos.getX()+97;
-        this.posy2=pos.getY()+78;
+        this.posx2=pos.getX()+99;
+        this.posy2=pos.getY()+79;
         
     }
     /**Getters y Setter
@@ -131,6 +131,8 @@ public class Dragon {
     }
     public void setPos(int x, int y){
         this.pos = new Position(x,y);
+        this.setPosx2(x+99);
+        this.setPosy2(y+79);
     } 
 
     

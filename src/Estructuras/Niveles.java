@@ -21,7 +21,7 @@ public class Niveles  {
     }
     private int getNumeroRandomY(){
         this.min = 0;
-        this.max = 700;
+        this.max = 680;
         return ThreadLocalRandom.current().nextInt(min, max);
     }
     

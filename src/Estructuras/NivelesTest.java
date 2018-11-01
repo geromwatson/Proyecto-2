@@ -1,17 +1,18 @@
 package Estructuras;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
 class NivelesTest {
 
-    public void testNivel1() {
 
-		
+	void testNivel1() {
+		Niveles n = new Niveles();
+		Linked_List m = n.Nivel1();
+		int j = m.getLenght();
+		assertEquals(15, j);
 	}
-        
-    public static void main(String args[]){
-        	Niveles n = new Niveles();
-                n.Nivel1();
-                System.out.println("se deberia imprimir");
-    }
 	
 
 }
