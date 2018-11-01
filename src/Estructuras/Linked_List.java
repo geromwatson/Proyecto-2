@@ -123,6 +123,21 @@ public class Linked_List{
 			}
 		}
 	}
+        public Linked_List darVuelta(Linked_List listadragones){
+            Linked_List listavuelta = new Linked_List();
+            Dragon temp = listadragones.root;
+            while (temp.getNext() != null){
+                listavuelta.append(temp);
+            }
+
+           return listavuelta; 
+        }
+        
+        
+        
+        
+        
+        
         
         /**Metodo que intercambia la posicion en lista de un dragon y su suceso
      * @param lista
@@ -231,91 +246,62 @@ public class Linked_List{
         /**Metodo que ordena la lista de Dragones por Selection Sort de menor a Mayor usando el atributo edad de los dragone
      * @param listaDragones
      * @return listaDragones ordenada*/
-        public Linked_List SelectionSortporEdadmM(Linked_List listaDragones){
-            for (int i = 0; i < listaDragones.getLenght() - 1; i++){
-                int index = i;
-                for (int j = i + 1; j < listaDragones.getLenght(); j++)
-                    if (listaDragones.getNodeinIndex(j).getEdad() < listaDragones.getNodeinIndex(index).getEdad())
-                        index = j;
-                int smallerNumber = listaDragones.getNodeinIndex(index).getEdad();
-                listadragones = listadragones.moverDragon(listaDragones, index, i);
-                listadragones = listadragones.moverDragon(listaDragones, i, smallerNumber);
-                //listaDragones.getNodeinIndex(index).setEdad(listaDragones.getNodeinIndex(i).getEdad());
-                //listaDragones.getNodeinIndex(i).setEdad(smallerNumber);
-            }
-            return listaDragones;
-        }
-        
-        /**Metodo que ordena la lista de Dragones por Selection Sort de Mayor a menor usando el atributo edad de los dragone
-     * @param listaDragones
-     * @return listaDragones ordenada*/
-        public Linked_List SelectionSortporEdadMm(Linked_List listaDragones){
-            for (int i = 0; i < listaDragones.getLenght() - 1; i++){
-                int index = i;
-                for (int j = i + 1; j < listaDragones.getLenght(); j++)
-                    if (listaDragones.getNodeinIndex(j).getEdad() > listaDragones.getNodeinIndex(index).getEdad())
-                        index = j;
-                int smallerNumber = listaDragones.getNodeinIndex(index).getEdad();
-                listadragones = listadragones.moverDragon(listaDragones, index, i);
-                listadragones = listadragones.moverDragon(listaDragones, i, smallerNumber);
-                //listaDragones.getNodeinIndex(index).setEdad(listaDragones.getNodeinIndex(i).getEdad());
-                //listaDragones.getNodeinIndex(i).setEdad(smallerNumber);
-            
-            }
-            return listaDragones;
-        }
-        
-        /**Metodo que ordena la lista de Dragones por Insertion Sort de menor a Mayor usando el atributo edad de los dragone
-     * @param listaDragones
-     * @return listaDragones ordenada*/
-    
-        public Linked_List InsertionSortporVelocidadRecargamM(Linked_List listaDragones){
-            int temp = 0;
-            for (int i = 1; i < listaDragones.getLenght(); i++) {
-                for(int j = i ; j > 0 ; j--){
-                    if(listaDragones.getNodeinIndex(j-1).getVelocidadRecarga() > listaDragones.getNodeinIndex(j).getVelocidadRecarga()){
-                        listadragones = listadragones.moverDragon(listaDragones, j, temp);
-                        listadragones = listadragones.moverDragon(listaDragones, j, listaDragones.getNodeinIndex(j-1).getVelocidadRecarga());
-                        listadragones = listadragones.moverDragon(listaDragones, j-1, temp);
-                        
-
-                        //listaDragones.getNodeinIndex(j).setVelocidadRecarga(temp);
-                        //listaDragones.getNodeinIndex(j).setVelocidadRecarga(listaDragones.getNodeinIndex(j-1).getVelocidadRecarga());
-                        //listaDragones.getNodeinIndex(j-1).setVelocidadRecarga(temp);                    
+        public void SelectionSortporEdadmM(Linked_List list){
+                int n = list.getLenght();
+                //Linked_List result = new Linked_List();
+                for(int i = 0;i <n-1;i++){
+                    int min_idx = i;
+                    for(int j = i+1;j<n;j++){
+                        if(list.getNodeinIndex(j).getEdad() < list.getNodeinIndex(min_idx).getEdad()){
+                            min_idx = j;
+                        }
                     }
+                    list.switchDragon(list, min_idx, i);
+                    //result.append(list.getNodeinIndex(min_idx));
+                    //list.deleteNodeinIndex(min_idx);
                 }
-
+               // return result;
             }
-            return listaDragones;
-        }
-        
+               
+              
         /**Metodo que ordena la lista de Dragones por Insertion Sort de Mayor a menor usando el atributo edad de los dragone
          * @param listaDragones
          * @return listaDragones ordenada*/
-        public Linked_List InsertionSortporVelocidadRecargaMm(Linked_List listaDragones){
-            int temp = 0;
-            for (int i = 1; i < listaDragones.getLenght(); i++) {
-                for(int j = i ; j > 0 ; j--){
-                    if(listaDragones.getNodeinIndex(j-1).getVelocidadRecarga() < listaDragones.getNodeinIndex(j).getVelocidadRecarga()){
-                        listadragones = listadragones.switchDragon(listaDragones, j, temp);
-                        listadragones = listadragones.switchDragon(listaDragones, j, listaDragones.getNodeinIndex(j-1).getVelocidadRecarga());
-                        listadragones = listadragones.switchDragon(listaDragones, j-1, temp);
-                        //listaDragones.getNodeinIndex(j).setVelocidadRecarga(temp);
-                        //listaDragones.getNodeinIndex(j).setVelocidadRecarga(listaDragones.getNodeinIndex(j-1).getVelocidadRecarga());
-                        //listaDragones.getNodeinIndex(j-1).setVelocidadRecarga(temp);                    
-                    }
-                }
-            }
-            return listaDragones;
-        }
+        void InsertionSortporVelocidadRecargamM(Linked_List arr) 
+        { 
+        int n = arr.getLenght(); 
+        for (int i=1; i<n; ++i) 
+        { 
+            int j = i-1; 
+  
+            /* Move elements of arr[0..i-1], thatg are 
+               greater than key, to one position ahead 
+               of their current position */
+            while (j>=0 && arr.getNodeinIndex(j).getEdad() > arr.getNodeinIndex(i).getEdad()) 
+            { 
+                switchDragon(arr, j+1, j);
+               
+                j = j-1; 
+            } 
+            switchDragon1(arr, i, j+1);
+            //switchDragon(arr, j+1, i);
+        } 
+    } 
+        void QuickSortporEdadmM(Linked_List arr, int low, int high) 
+        { 
+        if (low < high) 
+        { 
+            /* pi is partitioning index, arr[pi] is  
+              now at right place */
+            int pi = partition(arr, low, high); 
+  
+            // Recursively sort elements before 
+            // partition and after partition 
+            QuickSortporEdadmM(arr, low, pi-1); 
+            QuickSortporEdadmM(arr, pi+1, high); 
+        } 
+    } 
         
-        public Linked_List QuickSortporEdadmM(Linked_List listaDragones){
-            return listaDragones;
-        }
-        
-        public Linked_List QuickSortporEdadMm(Linked_List listaDragones){
-            return listaDragones;
-        }
             
             
         
@@ -342,24 +328,27 @@ public class Linked_List{
         /**Metodo que asigna que tipo de ordenamiento sigue despues de que maten a cada Drago
         * @param listadragones
         * @param ord*/
+        Arbol arbol = new Arbol();
+        
         public void nextSort(Linked_List listadragones, int ord){
         	String sort = null;
             switch (ord) {
                 case 1:
-                    listadragones.SSmM(listadragones);
+                    listadragones.SelectionSortporEdadmM(listadragones);
                     listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
                     break;
                 case 2:
-                    listadragones.arbolFamilia(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    listadragones.setListadragones(arbol.graficarArbol(listadragones));
                     sort="arbol Familia";
                     break;
                 case 3:
-                    listadragones.InsertionSortporVelocidadRecargaMm(listadragones);
+                    listadragones.InsertionSortporVelocidadRecargamM(listadragones);
+                    listadragones.setListadragones(listadragones.darVuelta(listadragones));
                     listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
                     sort="Insertion Sort";
                     break;
                 case 4:
-                    listadragones.QuickSortporEdadMm(listadragones);
+                    listadragones.QuickSortporEdadmM(listadragones,0,lenght-1);
                     listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
                     sort="Quick Sort";
                     break;
@@ -370,23 +359,24 @@ public class Linked_List{
                     break;
                 case 6:     
                     listadragones.SelectionSortporEdadmM(listadragones);
+                    listadragones.setListadragones(listadragones.darVuelta(listadragones));
                     listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
                     sort="Selection Sort";
                     break;
                 case 7:
-                    listadragones.QuickSortporEdadmM(listadragones);
+                    listadragones.QuickSortporEdadmM(listadragones,0,lenght-1);
+                    listadragones.setListadragones(listadragones.darVuelta(listadragones));
                     listadragones.graficoSort(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
                     sort="Quick Sort";
                     break;
                 case 8:
-                	listadragones.QuickSortporEdadMm(listadragones);
-                    listadragones.arbolFamilia(listadragones,listadragones.getNodeinIndex(0).getPos().getX());
+                    listadragones.setListadragones(arbol.graficarArbol(listadragones));
                     sort="Quick Sort";
                     break;
                 default:
                     break;
             }
-        }
+                }
 
         /** Metodo que elimina de la lista de dragones el dragon que murio y llama a la funcion que ordena los dragones cada vez que muere un dragon
         * @param listadragones
@@ -397,7 +387,12 @@ public Linked_List dragondisparado(Linked_List listadragones, Dragon dragon,int 
             if (dragon.getResistencia()== 0){
                 listadragones.deleteNodeinIndex(indic);
                 ord++;
+                if (listadragones.lenght<=2){
+                    Niveles nivel = new Niveles();
+                    listadragones.setListadragones(nivel.Nivel2());  
+                }
                 listadragones.nextSort(listadragones, ord);
+
                 if (ord > 8){
                     ord = 1;
                 }
@@ -445,22 +440,7 @@ public Linked_List dragondisparado(Linked_List listadragones, Dragon dragon,int 
             public void setLenght(int lenght) {
 		this.lenght = lenght;
             }  
-            public void SSmM(Linked_List list){
-                int n = list.getLenght();
-                //Linked_List result = new Linked_List();
-                for(int i = 0;i <n-1;i++){
-                    int min_idx = i;
-                    for(int j = i+1;j<n;j++){
-                        if(list.getNodeinIndex(j).getEdad() < list.getNodeinIndex(min_idx).getEdad()){
-                            min_idx = j;
-                        }
-                    }
-                    list.switchDragon(list, min_idx, i);
-                    //result.append(list.getNodeinIndex(min_idx));
-                    //list.deleteNodeinIndex(min_idx);
-                }
-               // return result;
-            }
+            
     
     
     /* This function takes last element as pivot, 
@@ -498,20 +478,7 @@ public Linked_List dragondisparado(Linked_List listadragones, Dragon dragon,int 
       arr[] --> Array to be sorted, 
       low  --> Starting index, 
       high  --> Ending index */
-    void quicksort(Linked_List arr, int low, int high) 
-    { 
-        if (low < high) 
-        { 
-            /* pi is partitioning index, arr[pi] is  
-              now at right place */
-            int pi = partition(arr, low, high); 
-  
-            // Recursively sort elements before 
-            // partition and after partition 
-            quicksort(arr, low, pi-1); 
-            quicksort(arr, pi+1, high); 
-        } 
-    } 
+    
   
     /* A utility function to print array of size n */
     void printArrayq(Linked_List arr) 
@@ -521,26 +488,7 @@ public Linked_List dragondisparado(Linked_List listadragones, Dragon dragon,int 
             System.out.print(arr.getNodeinIndex(i).getEdad()+arr.getNodeinIndex(i).getNombre()+" "); 
         System.out.println(); 
     }
-     void insertionsort(Linked_List arr) 
-    { 
-        int n = arr.getLenght(); 
-        for (int i=1; i<n; ++i) 
-        { 
-            int j = i-1; 
-  
-            /* Move elements of arr[0..i-1], thatg are 
-               greater than key, to one position ahead 
-               of their current position */
-            while (j>=0 && arr.getNodeinIndex(j).getEdad() > arr.getNodeinIndex(i).getEdad()) 
-            { 
-                switchDragon(arr, j+1, j);
-               
-                j = j-1; 
-            } 
-            switchDragon1(arr, i, j+1);
-            //switchDragon(arr, j+1, i);
-        } 
-    } 
+     
   
     /* A utility function to print array of size n*/
     static void printArrayi(Linked_List arr) 
