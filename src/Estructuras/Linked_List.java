@@ -28,7 +28,7 @@ public class Linked_List{
         
         /**Metodo append que mete a un dragon dentro de la lista de dragones*/
 	public void append(Dragon dragon) {
-		if(root == null) {  //si la lista sta vacia, el dragon entra como el root de la lista/
+		if(root == null) {  //si la lista esta vacia, el dragon entra como el root de la lista/
 			root = dragon;
 			root.setNext(null);
 			++this.lenght;
@@ -406,6 +406,23 @@ public class Linked_List{
             }
             public void setLenght(int lenght) {
 		this.lenght = lenght;
-            }       
+            }  
+            public void SSmM(Linked_List list){
+                int n = list.getLenght();
+                //Linked_List result = new Linked_List();
+                for(int i = 0;i <n-1;i++){
+                    int min_idx = i;
+                    for(int j = i+1;j<n;j++){
+                        if(list.getNodeinIndex(j).getEdad() < list.getNodeinIndex(min_idx).getEdad()){
+                            min_idx = j;
+                        }
+                    }
+                    list.switchDragon(list, min_idx, i);
+                    //result.append(list.getNodeinIndex(min_idx));
+                    //list.deleteNodeinIndex(min_idx);
+                }
+               // return result;
+            }
     }
+    
 

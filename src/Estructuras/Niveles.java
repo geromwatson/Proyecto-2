@@ -92,6 +92,13 @@ public class Niveles  {
         Position posdragon15 = new Position(getNumeroRandom(),getNumeroRandom());
         Dragon dragon15 = new Dragon("Quetza", 3,502,1,1,"Wawel",posdragon15);
         listadragones.append(dragon15);
+        
+        
+        listadragones.printList();
+        System.out.println("SORT APLICADO");
+        listadragones.SSmM(listadragones);
+        listadragones.printList();
+        System.out.print("Se deberia de estar imprimendo");
         //listadragones.printList();
         //listadragones.SelectionSortporEdadmM(listadragones);
         //listadragones.printList();
@@ -283,9 +290,7 @@ public class Niveles  {
         
         
         
-        //listadragones.printList();
-        //listadragones.SelectionSortporEdadmM(listadragones);
-        //listadragones.printList();
+
 
 
         return listadragones; 
